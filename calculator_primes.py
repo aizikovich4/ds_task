@@ -35,6 +35,7 @@ def read_values(inputFile):
                 except ValueError:
                     pass
                     #print("Is not a number: "+line)
+        array = list(dict.fromkeys(array))
         return array
     except IOError:
         print("Input file not accessible: "+inputFile)
@@ -54,7 +55,7 @@ def main(argv):
     print(values)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 5:
         print 'use next parameters: -i <inputfile> -o <outputfile>'
         exit(1)
     main(sys.argv[1:])
