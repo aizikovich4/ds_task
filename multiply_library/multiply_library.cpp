@@ -9,29 +9,36 @@ using namespace std; //TODO delete on release
 int main()
 {
   
-  Simple_Digits simple(50);
-
+  Simple_Digits_Singleton *prime_singleton;
+  
   vector<size_t> test{ 1,2,3,4,5,6,7,8,99,50,47,48,83,404,83,83 };
     
   for (auto t : test)
   {
-      cout <<t<<" is simle: "<< simple.is_simple(t) << endl;
+      cout <<t<<" is simple: "<< prime_singleton->getInstance().is_simple(t) << endl;
   }
 
-  /*
-  int n, div = 2;
-  cout << "N = ";
-  cin >> n;
-  cout << n << " = 1";
-  while (n > 1)
+  
+  size_t n=5047893, div = 2;
+  try
   {
-    while (n % div == 0)
+
+
+    while (n > 1)
     {
-      cout << " * " << div;
-      n = n / div;
+      while (n % div == 0)
+      {
+        cout << " * " << div;
+        n = n / div;
+      }
+      div = prime_singleton->getInstance().next_simple(div);
     }
-    div++;
   }
-  cin.get(); cin.get();*/
+  catch (std::exception& ex)
+  {
+    cout << ex.what() << endl;
+  }
+  
+
   return 0;
 }

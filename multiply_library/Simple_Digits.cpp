@@ -1,6 +1,6 @@
 #include "Simple_Digits.h"
 
-Simple_Digits::Simple_Digits(size_t n )
+Simple_Digits_Singleton::Simple_Digits_Singleton(size_t n )
 {
   size_t size = n + 1;
   _simple_digits_cache.reserve(size/2);
@@ -23,7 +23,7 @@ Simple_Digits::Simple_Digits(size_t n )
 
 }
 
-bool Simple_Digits::is_simple(size_t value)
+bool Simple_Digits_Singleton::is_simple(size_t value)
 {
   if (std::find(begin(_simple_digits_cache), end(_simple_digits_cache), value) != end(_simple_digits_cache))
   {
@@ -45,13 +45,33 @@ bool Simple_Digits::is_simple(size_t value)
   }
 }
 
-size_t Simple_Digits::get_max()
+size_t Simple_Digits_Singleton::get_simple(size_t i)
+{
+  return size_t();
+}
+
+size_t Simple_Digits_Singleton::next_simple(size_t prev)
+{
+  if (auto current = std::upper_bound(begin(_simple_digits_cache), end(_simple_digits_cache), prev); current != end(_simple_digits_cache))
+  {
+#ifdef DEBUG_PRIME
+    std::cout << "(from cache) ";
+#endif
+    return *current;
+  }
+  else
+  {
+    throw std::exception("Value too big");
+  }
+}
+
+size_t Simple_Digits_Singleton::get_max()
 {
   return _max_value;
 
 }
 
-bool Simple_Digits::check_simple(size_t value)
+bool Simple_Digits_Singleton::check_simple(size_t value)
 {
   if (value == 1)
   {
@@ -67,7 +87,7 @@ bool Simple_Digits::check_simple(size_t value)
   return true;  
 }
 
-std::vector<size_t> Simple_Digits::sieve_eratosthenes(size_t size)
+std::vector<size_t> Simple_Digits_Singleton::sieve_eratosthenes(size_t size)
 {
   std::vector<size_t> temp(size);
   std::vector<size_t> result;
