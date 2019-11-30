@@ -156,10 +156,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="multiply_library.cpp" />
-    <ClCompile Include="Simple_Digits.cpp" />
+    <ClCompile Include="Sieve_Eratosthenes_Singleton.cpp" />
+    <ClCompile Include="Simple_Divides.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Simple_Digits.h" />
+    <ClInclude Include="Sieve_Eratosthenes_Singleton.h" />
+    <ClInclude Include="Simple_Divides.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
