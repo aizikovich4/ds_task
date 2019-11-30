@@ -97,12 +97,12 @@ std::vector<size_t> Simple_Digits_Singleton::sieve_eratosthenes(size_t size)
     temp[i] = i;
   }
 
-  for (size_t p = 2 ; p < size; ++p)
+  for (size_t i = 2 ; i < size; ++i)
   {
-    if (temp[p])
+    if (temp[i])
     {
-      result.push_back(temp[p]);
-      for (size_t j = p * p; j < size; j += p)
+      result.push_back(temp[i]);
+      for (size_t j = i * i; j < size; j += i)
         temp[j] = 0;
     }
   }
