@@ -1,6 +1,40 @@
 #include "Simple_Digits.h"
 
-Simple_Digits_Singleton::Simple_Digits_Singleton(size_t n )
+std::vector<size_t> Simple_Digits_Singleton::prime_div(size_t value)
+{
+  size_t div = 2;
+  std::vector<size_t> div_arr;
+
+  try
+  {
+    while (value > 1)
+    {
+
+      while (value % div == 0)
+      {
+
+        div_arr.push_back(div);
+        value = value / div;
+      }
+      div = /*prime_singleton->getInstance().*/next_simple(div);
+    }
+
+    std::cout << std::endl;
+    for (auto t : div_arr)
+    {
+      std::cout << t << "  ";
+    }
+    std::cout << std::endl;
+  }
+  catch (std::exception& ex)
+  {
+    std::cout << ex.what() << std::endl;
+  }
+  return std::move(div_arr);
+
+}
+
+Simple_Digits_Singleton::Simple_Digits_Singleton(size_t n)
 {
   size_t size = n + 1;
   _simple_digits_cache.reserve(size/2);
@@ -15,12 +49,6 @@ Simple_Digits_Singleton::Simple_Digits_Singleton(size_t n )
     }
     std::cout<<std::endl;
   #endif
- 
-  if (auto max = std::max_element(begin(_simple_digits_cache), end(_simple_digits_cache)); max != end(_simple_digits_cache))
-  {
-    _max_value = *max;
-  }
-
 }
 
 bool Simple_Digits_Singleton::is_simple(size_t value)
@@ -45,30 +73,24 @@ bool Simple_Digits_Singleton::is_simple(size_t value)
   }
 }
 
-size_t Simple_Digits_Singleton::get_simple(size_t i)
-{
-  return size_t();
-}
-
 size_t Simple_Digits_Singleton::next_simple(size_t prev)
 {
   if (auto current = std::upper_bound(begin(_simple_digits_cache), end(_simple_digits_cache), prev); current != end(_simple_digits_cache))
   {
-#ifdef DEBUG_PRIME
-    std::cout << "(from cache) ";
-#endif
     return *current;
   }
   else
   {
-    throw std::exception("Value too big");
+    auto simple = 0;
+    while (1)
+    {
+      if (check_simple(++prev))
+      {
+        _simple_digits_cache.push_back(prev);
+        return prev;
+      }
+    }
   }
-}
-
-size_t Simple_Digits_Singleton::get_max()
-{
-  return _max_value;
-
 }
 
 bool Simple_Digits_Singleton::check_simple(size_t value)
@@ -91,12 +113,13 @@ std::vector<size_t> Simple_Digits_Singleton::sieve_eratosthenes(size_t size)
 {
   std::vector<size_t> temp(size);
   std::vector<size_t> result;
-  
+  result.reserve(1000);
+ 
   for (size_t i = 0; i < size; ++i)
   {
     temp[i] = i;
   }
-
+  
   for (size_t i = 2 ; i < size; ++i)
   {
     if (temp[i])
