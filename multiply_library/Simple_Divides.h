@@ -1,23 +1,24 @@
 #pragma once
 #include "pch.h"
 #include "Sieve_Eratosthenes_Singleton.h"
+namespace divides {
+  class Simple_Divides
+  {
+  public:
+    Simple_Divides() {};
 
-class Simple_Divides
-{
-public:
-  Simple_Divides() {};
-   
-  std::vector<size_t> prime_div(size_t value);
+    std::vector<size_t> prime_div(size_t value);
 
-private:
-  
-  size_t next_simple(size_t& prev);
+  private:
 
-  Sieve_Eratosthenes_Singleton* sieve;
+    size_t next_simple(size_t& prev);
 
-  Simple_Divides(const Simple_Divides&) = delete;
-  Simple_Divides(Simple_Divides&&) = delete;
-  Simple_Divides& operator=(Simple_Divides&) = delete;
+    Sieve_Eratosthenes_Singleton* sieve;
 
-};
+    Simple_Divides(const Simple_Divides&) = delete;
+    Simple_Divides(Simple_Divides&&) = delete;
+    Simple_Divides& operator=(Simple_Divides&) = delete;
 
+  };
+
+}

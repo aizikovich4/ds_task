@@ -1,0 +1,2 @@
+#define MULTIPLYLIBRARY_API __declspec(dllexport)
+#define MULTIPLYLIBRARY_API __declspec(dllimport)
