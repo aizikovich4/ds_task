@@ -41,7 +41,7 @@ namespace divides {
 
     {
       std::lock_guard lock(_prime_table_lock);
-      if (std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+      if (std::find(/*std::execution::par_unseq,*/ begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
       {
         return true;
       }
