@@ -11,9 +11,10 @@
 #define MULTIPLYLIBRARY_API __declspec(dllimport)
 #endif
 */
-#include <vector>
+#include "pch.h"
+
 namespace divides {
-  /*MULTIPLYLIBRARY_API*/ bool get_divides(int* data, int size, char* name);
+  /*MULTIPLYLIBRARY_API*/ bool get_divides(const pybind11::list& items, const char* name);
 }
 
 

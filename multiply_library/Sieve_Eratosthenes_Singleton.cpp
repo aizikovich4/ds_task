@@ -40,7 +40,7 @@ namespace divides {
     }
 
     {
-      std::lock_guard lock(_prime_table_lock);
+      std::lock_guard<std::mutex> lock(_prime_table_lock);
       if (std::find(/*std::execution::par_unseq,*/ begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
       {
         return true;
@@ -54,7 +54,7 @@ namespace divides {
     }
 
     {
-      std::lock_guard lock(_prime_table_lock);
+      std::lock_guard<std::mutex> lock(_prime_table_lock);
       _prime_numbers.push_back(value);
     }
     
@@ -84,8 +84,9 @@ namespace divides {
 
   bool Sieve_Eratosthenes_Singleton::get_next_from_cache(size_t& value, size_t& next)
   {
-    std::lock_guard lock(_prime_table_lock);
-    if (auto current = std::upper_bound(begin(_prime_numbers), end(_prime_numbers), value); current != end(_prime_numbers))
+    std::lock_guard<std::mutex> lock(_prime_table_lock);
+    auto current = std::upper_bound(begin(_prime_numbers), end(_prime_numbers), value);
+    if ( current != end(_prime_numbers))
     {
       next = *current;
       return true;

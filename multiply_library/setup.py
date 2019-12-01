@@ -19,7 +19,7 @@ class get_pybind_include(object):
         return pybind11.get_include(self.user)
 		
 sfc_module = Extension(
-    'multiply_library', sources = ['multiply_library.cpp'],
+    'multiply_library', sources = ['multiply_library.cpp','Sieve_Eratosthenes_Singleton.cpp','Simple_Divides.cpp'],
     include_dirs=[get_pybind_include(), get_pybind_include(user=True), os.getcwd()],
     language='c++',
     extra_compile_args = cpp_args,
