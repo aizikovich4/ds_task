@@ -1,5 +1,6 @@
 #include "Sieve_Eratosthenes_Singleton.h"
 
+
 Sieve_Eratosthenes_Singleton::Sieve_Eratosthenes_Singleton(size_t count)
 {
   std::vector<size_t> temp(count);

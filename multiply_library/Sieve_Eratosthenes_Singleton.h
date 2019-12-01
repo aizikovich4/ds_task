@@ -1,6 +1,5 @@
 #pragma once
-
-#include "stdafx.h"
+#include "pch.h"
 
 class Sieve_Eratosthenes_Singleton
 {

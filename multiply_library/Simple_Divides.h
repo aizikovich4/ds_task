@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "pch.h"
 #include "Sieve_Eratosthenes_Singleton.h"
 
 class Simple_Divides
