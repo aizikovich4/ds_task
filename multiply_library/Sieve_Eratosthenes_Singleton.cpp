@@ -1,6 +1,6 @@
 #include "Sieve_Eratosthenes_Singleton.h"
 
-namespace divides {
+
   Sieve_Eratosthenes_Singleton::Sieve_Eratosthenes_Singleton(size_t count)
   {
     std::vector<size_t> temp(count);
@@ -102,7 +102,3 @@ namespace divides {
   {
     return calculate_simple(value);
   }
-}
-
-
-

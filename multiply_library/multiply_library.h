@@ -15,9 +15,9 @@
 #include <pybind11/stl.h>
 
 
-namespace divides {
-  /*MULTIPLYLIBRARY_API*/ bool get_divides(const std::vector<int>& items, const char* name);
-}
+
+  ///*MULTIPLYLIBRARY_API*/ bool get_divides(int items, const char* output_name);
+
 
 
 

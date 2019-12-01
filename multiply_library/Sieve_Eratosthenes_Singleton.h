@@ -1,7 +1,6 @@
 #pragma once
 #include "pch.h"
-namespace divides {
-  class Sieve_Eratosthenes_Singleton
+class Sieve_Eratosthenes_Singleton
   {
   public:
 
@@ -28,4 +27,3 @@ namespace divides {
 
   };
 
-}

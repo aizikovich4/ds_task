@@ -5,45 +5,56 @@
 #include "multiply_library.h"
 #include "pch.h"
 #include "Simple_Divides.h"
-
-
-using namespace divides;
-
-bool get_divides(const std::vector<int>& items, char* name)
+   
+std::vector<size_t> get_divides(const std::vector<size_t> items, const std::string &output_file_name)
 {
+  struct data {
+    size_t number=0;
+    std::vector<size_t> divides;
+  };
+
+  if (output_file_name.empty() || items.empty())
+  {
+    return {};
+  }
+
   Simple_Divides prime;
+  std::vector<data> result;  
 
   for (size_t i=0; i<items.size(); ++i)
   {
     //in this place we can parallel our calculates
-
-    auto test = prime.prime_div(items[i]);
+    result.push_back({ items[i], prime.prime_div(items[i]) }); 
   }
 
-  return true;
 
-}
+  std::ofstream out;
+  try {
+    out.open(output_file_name);
 
-
-
-
-pybind11::object get_random(const pybind11::list& items, const pybind11::object& value) {
-  if (items.size()) {    
-    return value;
+    for (auto& data : result)
+    {
+      out << data.number <<" = 1";
+      for (auto& d : data.divides)
+      {
+        out << " * " << d;
+      }
+      out << endl;
+    }
   }
-  else {
-    return pybind11::none();
-  };
-}
-int add(int i, int j) {
-  return i + j;
-}
+  catch (std::exception& ex)
+  {
+    //log error
+  }
+  
+  //create file and write results
+  return {};
 
+}
+ 
 PYBIND11_MODULE(multiply_library, m) {
   m.doc() = "pybind11 example plugin"; // optional module docstring
-
-  m.def("add", &add, "A function which adds two numbers");
-  m.def("get_random", &get_random);
-  m.def("get_divides",&divides::get_divides, "!!! BORIS FUNCTION");
+  m.def("get_divides",&get_divides);
+  
 }
 

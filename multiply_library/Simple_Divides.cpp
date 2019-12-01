@@ -1,6 +1,6 @@
 #include "Simple_Divides.h"
 
-namespace divides {
+
   std::vector<size_t> Simple_Divides::prime_div(size_t value)
   {
     size_t div = 2;
@@ -43,5 +43,4 @@ namespace divides {
   }
 
  
-   
-}
+ 

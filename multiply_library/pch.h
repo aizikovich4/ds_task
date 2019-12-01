@@ -6,15 +6,13 @@
 #include <vector>
 #include <algorithm>
 #include <mutex>
+#include <fstream>
 #include <pybind11/pybind11.h>
 
 //#include <execution>
 
-namespace divides
-{
   using std::cout;
   using std::endl;
 
 #define nDEBUG_PRIME
-  constexpr unsigned int default_sieve_count = 100;
-}
+  constexpr unsigned int default_sieve_count = 10; 
