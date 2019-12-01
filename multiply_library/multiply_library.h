@@ -13,7 +13,7 @@
 */
 #include <vector>
 namespace divides {
-  /*MULTIPLYLIBRARY_API*/ std::vector<size_t> get_divides(size_t n);
+  /*MULTIPLYLIBRARY_API*/ bool get_divides(int* data, int size, char* name);
 }
 
 

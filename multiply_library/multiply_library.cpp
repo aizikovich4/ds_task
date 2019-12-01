@@ -9,14 +9,20 @@
 
 
 namespace divides {
-  std::vector<size_t> get_divides(size_t n)
+  bool divides::get_divides(int* data, int size, char* name)
   {
     Simple_Divides prime;
 
-    auto test = prime.prime_div(n);
-    return test;
-  }
+    for (int i = 0; i < size; ++i)
+    {
+      auto test = prime.prime_div(data[i]);
 
+
+    }
+
+    return true;
+
+  }
 }
 
 
@@ -31,5 +37,6 @@ PYBIND11_MODULE(multiply_library, m) {
   m.doc() = "pybind11 example plugin"; // optional module docstring
 
   m.def("add", &add, "A function which adds two numbers");
+  //m.def("get_divides", &divides::get_divides, "!!! BORIS FUNCTION");
 }
 
