@@ -12,8 +12,6 @@
 
 namespace divides
 {
-
-
   using std::cout;
   using std::endl;
 

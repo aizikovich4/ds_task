@@ -6,22 +6,24 @@
 #include "pch.h"
 #include "Simple_Divides.h"
 
-/*
-namespace divides {
-  bool divides::get_divides(const py::list& items, char* name)
+
+using namespace divides;
+
+bool get_divides(const std::vector<int>& items, char* name)
+{
+  Simple_Divides prime;
+
+  for (size_t i=0; i<items.size(); ++i)
   {
-    Simple_Divides prime;
+    //in this place we can parallel our calculates
 
-    for (auto t : items)
-    {
-      //in this place we can parallel our calculates
-      auto test = prime.prime_div(t);
-    }
-    
-    return true;
-
+    auto test = prime.prime_div(items[i]);
   }
-}*/
+
+  return true;
+
+}
+
 
 
 
@@ -42,6 +44,6 @@ PYBIND11_MODULE(multiply_library, m) {
 
   m.def("add", &add, "A function which adds two numbers");
   m.def("get_random", &get_random);
-  //m.def("get_divides", &divides::get_divides, "!!! BORIS FUNCTION");
+  m.def("get_divides",&divides::get_divides, "!!! BORIS FUNCTION");
 }
 

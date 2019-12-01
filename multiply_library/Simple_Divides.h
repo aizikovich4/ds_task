@@ -18,7 +18,6 @@ namespace divides {
     Simple_Divides(const Simple_Divides&) = delete;
     Simple_Divides(Simple_Divides&&) = delete;
     Simple_Divides& operator=(Simple_Divides&) = delete;
-
   };
 
 }

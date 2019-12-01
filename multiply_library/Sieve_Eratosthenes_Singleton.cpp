@@ -30,6 +30,7 @@ namespace divides {
     }
     std::cout << std::endl;
 #endif
+
   }
 
   bool Sieve_Eratosthenes_Singleton::calculate_simple(size_t& value)
