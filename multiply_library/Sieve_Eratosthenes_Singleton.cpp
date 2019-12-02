@@ -1,5 +1,7 @@
 #include "Sieve_Eratosthenes_Singleton.h"
 
+namespace prime_divides {
+
 
   Sieve_Eratosthenes_Singleton::Sieve_Eratosthenes_Singleton(size_t count)
   {
@@ -42,7 +44,7 @@
 
     {
       std::lock_guard<std::mutex> lock(_prime_table_lock);
-      if (std::find(/*std::execution::par_unseq,*/ begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+      if (std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
       {
         return true;
       }
@@ -58,7 +60,7 @@
       std::lock_guard<std::mutex> lock(_prime_table_lock);
       _prime_numbers.push_back(value);
     }
-    
+
 
     return true;
   }
@@ -80,14 +82,14 @@
           return prev;
         }
       }
-    }  
+    }
   }
 
   bool Sieve_Eratosthenes_Singleton::get_next_from_cache(size_t& value, size_t& next)
   {
     std::lock_guard<std::mutex> lock(_prime_table_lock);
     auto current = std::upper_bound(begin(_prime_numbers), end(_prime_numbers), value);
-    if ( current != end(_prime_numbers))
+    if (current != end(_prime_numbers))
     {
       next = *current;
       return true;
@@ -102,3 +104,5 @@
   {
     return calculate_simple(value);
   }
+
+}

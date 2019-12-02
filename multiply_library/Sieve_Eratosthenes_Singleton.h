@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
-class Sieve_Eratosthenes_Singleton
+namespace prime_divides {
+  class Sieve_Eratosthenes_Singleton
   {
   public:
 
@@ -27,3 +28,4 @@ class Sieve_Eratosthenes_Singleton
 
   };
 
+}

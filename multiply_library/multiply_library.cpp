@@ -5,56 +5,56 @@
 #include "multiply_library.h"
 #include "pch.h"
 #include "Simple_Divides.h"
-   
-std::vector<size_t> get_divides(const std::vector<size_t> items, const std::string &output_file_name)
-{
-  struct data {
-    size_t number=0;
-    std::vector<size_t> divides;
-  };
-
-  if (output_file_name.empty() || items.empty())
+namespace prime_divides {
+  bool write_divides_to_File(const std::vector<size_t> items, const std::string& output_file_name)
   {
-    return {};
-  }
-
-  Simple_Divides prime;
-  std::vector<data> result;  
-
-  for (size_t i=0; i<items.size(); ++i)
-  {
-    //in this place we can parallel our calculates
-    result.push_back({ items[i], prime.prime_div(items[i]) }); 
-  }
-
-
-  std::ofstream out;
-  try {
-    out.open(output_file_name);
-
-    for (auto& data : result)
+    if (output_file_name.empty() || items.empty())
     {
-      out << data.number <<" = 1";
-      for (auto& d : data.divides)
-      {
-        out << " * " << d;
-      }
-      out << endl;
+      return false;
     }
+
+    try
+    {
+
+      Simple_Divides prime;
+      std::map<size_t, std::vector<size_t>> result;
+
+      for (size_t i = 0; i < items.size(); ++i)
+      {
+        if (!result.count(items[i]))
+        {
+          //in this place we can parallel our calculates
+          result.insert({ items[i], prime.prime_div(items[i]) });
+        }
+
+      }
+
+      std::ofstream out;
+
+      out.open(output_file_name);
+
+      for (auto& data : result)
+      {
+        out << data.first<< " = 1";
+        for (auto& d : data.second)
+        {
+          out << " * " << d;
+        }
+        out << endl;
+      }
+    }
+    catch (std::exception& ex)
+    {
+      //need to log error
+      return false;
+    }
+
+    return true;
   }
-  catch (std::exception& ex)
-  {
-    //log error
+
+  PYBIND11_MODULE(multiply_library, m) {
+    m.doc() = "prime divedes plugin"; // optional module docstring
+    m.def("write_divides_to_File", &write_divides_to_File);
   }
-  
-  //create file and write results
-  return {};
 
 }
- 
-PYBIND11_MODULE(multiply_library, m) {
-  m.doc() = "pybind11 example plugin"; // optional module docstring
-  m.def("get_divides",&get_divides);
-  
-}
-

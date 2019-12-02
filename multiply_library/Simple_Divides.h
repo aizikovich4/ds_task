@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Sieve_Eratosthenes_Singleton.h"
-
+namespace prime_divides {
   class Simple_Divides
   {
   public:
@@ -20,3 +20,4 @@
     Simple_Divides& operator=(Simple_Divides&) = delete;
   };
 
+}

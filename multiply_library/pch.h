@@ -9,7 +9,7 @@
 #include <fstream>
 #include <pybind11/pybind11.h>
 
-//#include <execution>
+#include <execution>
 
   using std::cout;
   using std::endl;

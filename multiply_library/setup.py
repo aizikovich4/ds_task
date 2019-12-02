@@ -3,7 +3,7 @@ import os, sys
 from distutils.core import setup, Extension
 from distutils import sysconfig
 
-cpp_args = ['-std=c++17', '-stdlib=libc++']
+cpp_args = ['/std:c++17']
 
 class get_pybind_include(object):
     """Helper class to determine the pybind11 include path
@@ -28,6 +28,6 @@ sfc_module = Extension(
 setup(
     name = 'multiply_library',
     version = '1.0',
-    description = 'Python package with multiply_library C++ extension (PyBind11)',
+    description = 'Dino systems test task - calculate prime divides and output to file',
     ext_modules = [sfc_module],
 )
