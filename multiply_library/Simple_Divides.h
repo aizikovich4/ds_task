@@ -8,6 +8,7 @@ namespace prime_divides {
     Simple_Divides() {};
 
     std::vector<size_t> prime_div(size_t value);
+    bool is_simple(size_t);
 
   private:
 
@@ -19,5 +20,4 @@ namespace prime_divides {
     Simple_Divides(Simple_Divides&&) = delete;
     Simple_Divides& operator=(Simple_Divides&) = delete;
   };
-
 }

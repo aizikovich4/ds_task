@@ -20,6 +20,11 @@ namespace prime_divides {
 
       for (size_t i = 0; i < items.size(); ++i)
       {
+        if (prime.is_simple(items[i]))
+        {
+          continue;
+        }
+
         if (!result.count(items[i]))
         {
           //in this place we can parallel our calculates
@@ -55,5 +60,4 @@ namespace prime_divides {
     m.doc() = "prime divedes plugin"; // optional module docstring
     m.def("write_divides_to_File", &write_divides_to_File);
   }
-
 }

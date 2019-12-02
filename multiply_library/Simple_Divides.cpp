@@ -42,5 +42,9 @@ namespace prime_divides {
     return std::move(div_arr);
   }
 
- 
+  bool Simple_Divides::is_simple(size_t number)
+  {
+    return sieve->getInstance().is_simple(number);
+  }
+
  }

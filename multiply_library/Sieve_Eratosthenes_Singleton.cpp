@@ -61,7 +61,6 @@ namespace prime_divides {
       _prime_numbers.push_back(value);
     }
 
-
     return true;
   }
 
@@ -100,9 +99,23 @@ namespace prime_divides {
     }
   }
 
-  bool Sieve_Eratosthenes_Singleton::is_simple(size_t& value)
+  bool Sieve_Eratosthenes_Singleton::is_simple(size_t value)
   {
-    return calculate_simple(value);
+    {
+      std::lock_guard<std::mutex> lock(_prime_table_lock);
+      if (std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+      {
+        return true;
+      }
+    }
+
+    for (size_t d = 2; d * d <= value; ++d)
+    {
+      if (value % d == 0)
+        return false;
+    }
+    return true;
   }
+
 
 }
