@@ -2,8 +2,8 @@
 //
 
 #include "framework.h"
-#include "multiply_library.h"
-#include "pch.h"
+#include "prime_divides.h"
+#include "pch.h" 
 #include "Simple_Divides.h"
 namespace prime_divides {
   bool write_divides_to_File(const std::vector<size_t> items, const std::string& output_file_name)
@@ -15,7 +15,6 @@ namespace prime_divides {
 
     try
     {
-
       Simple_Divides prime;
       std::map<size_t, std::vector<size_t>> result;
 
@@ -52,7 +51,7 @@ namespace prime_divides {
     return true;
   }
 
-  PYBIND11_MODULE(multiply_library, m) {
+  PYBIND11_MODULE(prime_divides, m) {
     m.doc() = "prime divedes plugin"; // optional module docstring
     m.def("write_divides_to_File", &write_divides_to_File);
   }

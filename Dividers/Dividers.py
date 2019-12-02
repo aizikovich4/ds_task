@@ -1,5 +1,5 @@
 import sys, getopt
-import multiply_library
+import prime_divides
 
 def check_params(argv):
     try:
@@ -50,7 +50,7 @@ def main(argv):
 
     print("Numbers for checking:")
     print(values)
-    print(multiply_library.write_divides_to_File(values, outputFile))
+    print(prime_divides.write_divides_to_File(values, outputFile))
 
 if __name__ == "__main__":
     if len(sys.argv) < 5:
