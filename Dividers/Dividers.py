@@ -1,5 +1,23 @@
 import sys, getopt
 import prime_divides
+import time
+from threading import Thread
+
+class PrintProcess(Thread):
+    def __init__(self, count):
+        Thread.__init__(self)
+        self.count = count
+        self.current_percent =0
+    def set(self, current):
+        if current:
+            self.current_percent = self.count/100 * current
+    def run(self):
+        old_percent = self.current_percent
+        while 1 or self.current_percent != 100:
+            if old_percent != self.current_percent:
+                print(self.current_percent)
+                old_percent = self.current_percent
+                time.sleep(10)
 
 def check_params(argv):
     try:
@@ -32,7 +50,7 @@ def read_values(inputFile):
                     array.append(int(line))
                 except ValueError:
                     pass
-        array = list(dict.fromkeys(array))
+        # array = list(dict.fromkeys(array))
         return array
     except IOError:
         print("Input file not accessible: "+inputFile)
@@ -48,9 +66,20 @@ def main(argv):
     if not values:
         exit(1)
 
-    print("Numbers for checking:")
-    print(values)
-    print(prime_divides.write_divides_to_File(values, outputFile))
+    current_counter = 0
+    with open(outputFile, 'w') as out:
+        for number in values:
+            divs = prime_divides.get_divides(number)
+            if not divs:
+                continue
+            current_counter += 1
+            current_percent = current_counter/len(values) * 100
+            print(str(round(current_percent, 3))+"%")
+            out.write(str(number)+" = 1")
+            for d in divs:
+                out.write("*"+str(d))
+            out.write("\n")
+    print("100%")
 
 if __name__ == "__main__":
     if len(sys.argv) < 5:

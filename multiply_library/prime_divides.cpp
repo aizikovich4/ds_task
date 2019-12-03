@@ -6,58 +6,35 @@
 #include "pch.h" 
 #include "Simple_Divides.h"
 namespace prime_divides {
-  bool write_divides_to_File(const std::vector<size_t> items, const std::string& output_file_name)
+  std::vector<size_t> get_divides(const size_t number)
   {
-    if (output_file_name.empty() || items.empty())
-    {
-      return false;
-    }
+    std::ofstream out;
+    out.open("primedivides.log");
 
     try
     {
       Simple_Divides prime;
-      std::map<size_t, std::vector<size_t>> result;
 
-      for (size_t i = 0; i < items.size(); ++i)
+      if (prime.is_simple(number))
       {
-        if (prime.is_simple(items[i]))
-        {
-          continue;
-        }
+        return {};
+      } 
 
-        if (!result.count(items[i]))
-        {
-          //in this place we can parallel our calculates
-          result.insert({ items[i], prime.prime_div(items[i]) });
-        }
+      return prime.prime_div(number);
 
-      }
-
-      std::ofstream out;
-
-      out.open(output_file_name);
-
-      for (auto& data : result)
-      {
-        out << data.first<< " = 1";
-        for (auto& d : data.second)
-        {
-          out << " * " << d;
-        }
-        out << endl;
-      }
     }
     catch (std::exception& ex)
     {
-      //need to log error
-      return false;
+      out << ex.what();
+      out.close();
     }
 
-    return true;
+    return {};
   }
 
-  PYBIND11_MODULE(prime_divides, m) {
+  PYBIND11_MODULE(prime_divides, m) 
+  {
     m.doc() = "prime divedes plugin"; // optional module docstring
-    m.def("write_divides_to_File", &write_divides_to_File);
+    m.def("get_divides", &get_divides);
   }
 }

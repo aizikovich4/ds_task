@@ -3,6 +3,11 @@
 namespace prime_divides {
   std::vector<size_t> Simple_Divides::prime_div(size_t value)
   {
+    if (_prime_cache.count(value))
+    {
+      return _prime_cache[value];
+    }
+
     size_t div = 2;
     auto source_value = value;
     std::vector<size_t> div_arr;
@@ -39,6 +44,9 @@ namespace prime_divides {
     {
       std::cout << ex.what() << std::endl;
     }
+
+    _prime_cache[value] = div_arr;
+
     return std::move(div_arr);
   }
 

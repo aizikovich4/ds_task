@@ -14,6 +14,8 @@ namespace prime_divides {
 
     size_t next_simple(size_t& prev);
 
+    std::map<size_t, std::vector<size_t>> _prime_cache;
+
     Sieve_Eratosthenes_Singleton* sieve;
 
     Simple_Divides(const Simple_Divides&) = delete;
