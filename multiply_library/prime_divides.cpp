@@ -1,10 +1,7 @@
-// multiply_library.cpp : Defines the exported functions for the DLL.
-//
-
-//#include "framework.h"
 #include "prime_divides.h"
 #include "pch.h" 
 #include "Simple_Divides.h"
+
 namespace prime_divides {
   std::vector<size_t> get_divides(const size_t number)
   {
