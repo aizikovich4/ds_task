@@ -1,6 +1,6 @@
 import sys, getopt
 import prime_divides
-import time, os
+import os
 
 sys.path.append(os.getcwd())
 
@@ -66,12 +66,8 @@ def check_params(argv):
 
 def main(argv):
     inputFile, outputFile = check_params(argv)
-    print("Input file: " + inputFile)
-    print("Output file: " + outputFile)
-
     dividersTest = PrimeDivide(inputFile, outputFile)
     dividersTest.run()
-
 
 
 if __name__ == "__main__":

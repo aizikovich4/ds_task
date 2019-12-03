@@ -23,7 +23,7 @@
     <ProjectGuid>{FC306A1E-ACF7-4B09-BD5A-5D8F2EB0C8F9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>multiplylibrary</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectName>prime_divides_library</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -176,7 +176,6 @@
     <ClInclude Include="Simple_Divides.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="prime_divides.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
