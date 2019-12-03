@@ -2,7 +2,7 @@
 #include "pch.h" 
 #include "Simple_Divides.h"
 
-namespace prime_divides {
+namespace prime_divides { 
   std::vector<size_t> get_divides(const size_t number)
   {
     std::ofstream out;

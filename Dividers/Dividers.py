@@ -1,5 +1,4 @@
-import sys, getopt
-import os
+import sys, getopt,os
 import prime_divides
 
 sys.path.append(os.getcwd())

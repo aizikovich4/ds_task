@@ -1,16 +1,20 @@
 import os, sys
+import platform
 
 from distutils.core import setup, Extension
 from distutils import sysconfig
 
-cpp_args = ['/std:c++17']
 
+
+if platform.system() == "Linux":
+    cpp_args = ['-std=c++17']
+    sources = ['../multiply_library/prime_divides.cpp', '../multiply_library/Sieve_Eratosthenes_Singleton.cpp',
+               '../multiply_library/Simple_Divides.cpp']
+else:
+    cpp_args = ['/std:c++17']
+    sources = ['..\multiply_library\prime_divides.cpp', '..\multiply_library\Sieve_Eratosthenes_Singleton.cpp',
+               '..\multiply_library\Simple_Divides.cpp']
 class get_pybind_include(object):
-    """Helper class to determine the pybind11 include path
-    The purpose of this class is to postpone importing pybind11
-    until it is actually installed, so that the ``get_include()``
-    method can be invoked. """
-
     def __init__(self, user=False):
         self.user = user
 
@@ -19,7 +23,7 @@ class get_pybind_include(object):
         return pybind11.get_include(self.user)
 		
 sfc_module = Extension(
-    'prime_divides', sources = ['..\multiply_library\prime_divides.cpp','..\multiply_library\Sieve_Eratosthenes_Singleton.cpp','..\multiply_library\Simple_Divides.cpp'],
+    'prime_divides', sources,
     include_dirs=[get_pybind_include(), get_pybind_include(user=True), os.getcwd()],
     language='c++',
     extra_compile_args = cpp_args,
