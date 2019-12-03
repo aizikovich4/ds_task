@@ -14,9 +14,10 @@
 #include "pch.h"
 #include <pybind11/stl.h>
 
+namespace prime_divides{
+std::vector<size_t> get_divides(const size_t number);
+}
 
-
-  ///*MULTIPLYLIBRARY_API*/ bool get_divides(int items, const char* output_name);
 
 
 

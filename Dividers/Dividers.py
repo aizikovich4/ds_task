@@ -1,7 +1,10 @@
 import sys, getopt
-import prime_divides
+# import prime_divides
 import os
+import ctypes
 
+prime_divides = ctypes.cdll.LoadLibrary(os.getcwd()+"/prime_divides.cpython-36m-x86_64-linux-gnu.so")
+dir(prime_divides)
 sys.path.append(os.getcwd())
 
 class PrimeDivide:
