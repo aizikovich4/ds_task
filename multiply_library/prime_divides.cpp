@@ -13,7 +13,7 @@ namespace prime_divides {
       Simple_Divides prime;
 
       if (prime.is_simple(number))
-      {
+      { 
         return {};
       } 
 

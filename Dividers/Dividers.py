@@ -1,6 +1,6 @@
 import sys, getopt
-import prime_divides
 import os
+import prime_divides
 
 sys.path.append(os.getcwd())
 
