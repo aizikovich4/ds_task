@@ -8,7 +8,9 @@
 #include <map>
 #include <pybind11/pybind11.h>
 
-#include <execution>
+#ifdef _WIN64
+  #include <execution>
+#endif
 
   using std::cout;
   using std::endl;

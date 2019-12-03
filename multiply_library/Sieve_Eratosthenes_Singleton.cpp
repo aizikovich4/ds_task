@@ -44,7 +44,15 @@ namespace prime_divides {
 
     {
       std::lock_guard<std::mutex> lock(_prime_table_lock);
-      if (std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+
+      if (
+          #ifdef _WIN64
+              std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers)
+           #else
+              std::find(begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers)
+          #endif
+        )
+
       {
         return true;
       }
@@ -103,7 +111,12 @@ namespace prime_divides {
   {
     {
       std::lock_guard<std::mutex> lock(_prime_table_lock);
-      if (std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+      if (
+          #ifdef _WIN64
+            std::find(std::execution::par_unseq, begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+          #else
+                  std::find(begin(_prime_numbers), end(_prime_numbers), value) != end(_prime_numbers))
+          #endif
       {
         return true;
       }

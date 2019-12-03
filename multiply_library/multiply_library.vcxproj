@@ -169,7 +169,6 @@
     <None Include="setup.py" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
     <ClInclude Include="prime_divides.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sieve_Eratosthenes_Singleton.h" />
