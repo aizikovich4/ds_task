@@ -1,15 +1,17 @@
-# ds_task
-requirements:
+# Computing of prime dividers
+
+Requirements:
 1) python3
 2) pybind11
 3) msvc 19 
 
-build:
+Build:
 1) go to Dividers folder
 2) ```python3 setup.py build_ext -i```
 
-run (from Dividers direcotry":
-```python Dividers.py -i test.txt -o result.txt```
+Run (from Dividers directory):
 
+```python Dividers.py -i test.txt -o result.txt```
+Params:
 -i - input file with numbers
 -o - output file for dividers
