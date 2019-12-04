@@ -12,6 +12,7 @@ Build:
 Run (from Dividers directory):
 
 ```python Dividers.py -i test.txt -o result.txt```
+
 Params:
 -i - input file with numbers
 -o - output file for dividers
