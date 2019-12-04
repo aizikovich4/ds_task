@@ -27,13 +27,14 @@ class PrimeDivide:
             return
 
         current_counter = 0
+        size = len(self.numbers)
         with open(self.outputFile, 'w') as out:
             for number in self.numbers:
                 divs = prime_divides.get_divides(number)
                 if not divs:
                     continue
                 current_counter += 1
-                current_percent = current_counter / len(self.numbers) * 100
+                current_percent = current_counter / size * 100
                 print(str(round(current_percent, 3)) + "%")
                 out.write(str(number) + " = 1")
                 for d in divs:
